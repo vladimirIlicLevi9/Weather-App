@@ -1,0 +1,37 @@
+<div class="card-wrapper">
+  <div class="city-header">
+    <img class="city-image" [src]="cityWeather.cityIcon" />
+    <span>{{ cityWeather.name }}</span>
+  </div>
+  <div class="weather-info">
+    <img class="weather-icon" [src]="cityWeather.weather.icon" />
+    <span>{{ cityWeather.weather.description }}</span>
+
+    <span class="weather-tmp"
+      >{{ cityWeather.temp | number: "1.0-0" }}&deg;C</span
+    >
+
+    <span>wind: {{ cityWeather.wind | number: "1.0-0" }} knots</span>
+    <span
+      *ngIf="!hourlyCityWeather.length"
+      class="link"
+      (click)="getHourlyCityWeather()"
+      >See more &rsaquo;</span
+    >
+
+    <span
+      *ngIf="hourlyCityWeather.length"
+      class="link"
+      (click)="hourlyCityWeather = []"
+      >Hide more &rsaquo;</span
+    >
+
+    <div class="hourly-wrapper">
+      <app-hourly-wether
+        *ngFor="let hourlyWeather of hourlyCityWeather"
+        [hourlyWeather]="hourlyWeather"
+      ></app-hourly-wether>
+    </div>
+  </div>
+</div>
+<br />

@@ -1,0 +1,33 @@
+.link {
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.app-wrapper {
+  background-color: $primary-yellow;
+  min-height: 100vh;
+}
+
+span {
+  display: block;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $primary-yellow;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $primary-blue;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primary-darkblue;
+}

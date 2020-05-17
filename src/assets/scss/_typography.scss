@@ -1,0 +1,27 @@
+h1,
+p,
+span {
+  font-family: $main-font;
+  color: $neutral-color;
+}
+
+.weather-tmp {
+  font-size: 50px;
+  font-weight: $font-light;
+}
+
+.temp-small {
+  font-weight: $font-light;
+}
+
+.time {
+  opacity: 0.7;
+  font-size: 10px;
+}
+
+city-header {
+  span {
+    text-transform: uppercase;
+    font-weight: $font-bold;
+  }
+}

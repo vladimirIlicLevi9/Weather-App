@@ -1,0 +1,7 @@
+<div>
+  <span class="time">{{ hourlyWeather.dt | date: "h:mm" }}</span>
+  <img [src]="hourlyWeather.weather.icon" />
+  <span class="temp-small">
+    {{ hourlyWeather.temp | number: "1.0-0" }}&deg;C</span
+  >
+</div>

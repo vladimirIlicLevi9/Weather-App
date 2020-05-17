@@ -1,18 +1,31 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { HeaderComponent } from "./components/header/header.component";
+import { CitiesComponent } from "./components/cities/cities.component";
+import { CityWeatherComponent } from "./components/cities/city-weather/city-weather.component";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { HttpAPIKeyInterceptor } from "./interseptors/api-key-interseptor";
+import { HourlyWetherComponent } from "./components/cities/city-weather/hourly-wether/hourly-wether.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    CitiesComponent,
+    CityWeatherComponent,
+    HourlyWetherComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpAPIKeyInterceptor,
+      multi: true,
+    },
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
