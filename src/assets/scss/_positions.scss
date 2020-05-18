@@ -16,15 +16,7 @@
 .card-wrapper {
   min-width: 200px;
   padding: 10px;
-  border-radius: 12px;
-  background: linear-gradient(
-    312deg,
-    $primary-blue 0%,
-    $primary-darkgreen 75%,
-    $primary-green 100%
-  );
-  background-color: $neutral-color;
-  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+
   @include media_tablet {
     margin: 2vh;
   }
@@ -46,12 +38,6 @@
   align-items: center;
   border-bottom: 0.7px solid $neutral-color;
   padding-bottom: 10px;
-  .city-image {
-    width: 10vh;
-    opacity: 0.4;
-    border: 1px solid;
-    border-radius: 50%;
-  }
   p {
     margin-bottom: 0;
   }
@@ -63,11 +49,10 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   max-height: 95px;
   overflow: auto;
-  div {
-    padding-bottom: 3px;
-    margin-bottom: 3px;
-    border-bottom: 0.7px solid $neutral-color;
-  }
+}
+
+span {
+  display: block;
 }
 
 .header {

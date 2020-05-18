@@ -9,8 +9,29 @@
   min-height: 100vh;
 }
 
-span {
-  display: block;
+.city-weather {
+  border-radius: 12px;
+  background: linear-gradient(
+    312deg,
+    $primary-blue 0%,
+    $primary-darkgreen 75%,
+    $primary-green 100%
+  );
+  background-color: $neutral-color;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+}
+
+.city-image {
+  width: 10vh;
+  opacity: 0.4;
+  border: 1px solid;
+  border-radius: 50%;
+}
+
+.hourly-city-weather {
+  padding-bottom: 3px;
+  margin-bottom: 3px;
+  border-bottom: 0.7px solid $neutral-color;
 }
 
 ::-webkit-scrollbar {
