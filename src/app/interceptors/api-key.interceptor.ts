@@ -10,8 +10,7 @@ import { environment } from "src/environments/environment";
 
 //Intersepts every HTTP request and adds apiId and units to query params to access Open Weather API
 @Injectable()
-export class HttpAPIKeyInterceptor implements HttpInterceptor {
-  constructor() {}
+export class HttpApiKeyInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
