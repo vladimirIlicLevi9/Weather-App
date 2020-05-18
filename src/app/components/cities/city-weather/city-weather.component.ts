@@ -3,7 +3,6 @@ import { CityWeather } from "src/app/models/city-weather.model";
 import { CityWeatherService } from "src/app/services/city-weather.service";
 import { HourlyWeather } from "src/app/models/hourly-weather.model";
 import { Cities } from "src/app/enums/cities.enum";
-import { ToastrService } from "ngx-toastr";
 import { ImageFormat } from "src/app/enums/img-format.enum";
 
 // Path to city images folder
@@ -23,10 +22,7 @@ export class CityWeatherComponent implements OnInit {
   // Hides component from view if an error occurs while getting weather info
   showCityWeather: boolean;
 
-  constructor(
-    private cityWeatherService: CityWeatherService,
-    private toastr: ToastrService
-  ) {}
+  constructor(private cityWeatherService: CityWeatherService) {}
 
   ngOnInit(): void {
     this.getCityWeather(this.cityId);
