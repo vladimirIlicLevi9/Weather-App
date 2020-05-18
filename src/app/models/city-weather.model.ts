@@ -3,10 +3,10 @@ import { Weather } from "./weather.model";
 export class CityWeather {
   name: String;
   weather: Weather;
-  temp: String;
-  wind: String;
-  lon: String;
-  lat: String;
+  temp: number;
+  wind: number;
+  lon: number;
+  lat: number;
   cityIcon: String;
   constructor(args: any = { weather: [], main: {}, wind: {}, coord: {} }) {
     this.name = args.name;

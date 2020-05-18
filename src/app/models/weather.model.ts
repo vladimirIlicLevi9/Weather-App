@@ -5,7 +5,7 @@ export class Weather {
   description: String;
   icon: String;
   main: String;
-  constructor(args: any = {}) {
+  constructor(args: any = { icon: "01d" }) {
     this.description = args.description;
     this.icon = environment.weatherIconAPI + args.icon + ImageFormatEnum.PNG;
     this.main = args.main;

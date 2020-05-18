@@ -27,7 +27,7 @@ export class CityWeatherComponent implements OnInit {
     this.cityWeatherService.getCityWeather(this.cityId).subscribe(
       (response) => {
         this.cityWeather = new CityWeather({ ...response });
-        this.setCiityIcon();
+        this.setCiityIcon(this.cityId);
       },
       (error) => {
         console.log(error);
@@ -50,8 +50,12 @@ export class CityWeatherComponent implements OnInit {
       );
   }
 
-  setCiityIcon() {
-    switch (this.cityId) {
+  hideHourlyCityWeather() {
+    this.hourlyCityWeather = [];
+  }
+
+  setCiityIcon(cityId: number) {
+    switch (cityId) {
       case CitiesEnum.BERLIN:
         this.cityWeather.cityIcon = this.imagePath + "berlin.png";
         break;
