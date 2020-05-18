@@ -1,8 +1,9 @@
 import { CityWeatherComponent } from "./city-weather.component";
 import { CityWeatherService } from "src/app/services/city-weather.service";
 import { from } from "rxjs/";
-import { CitiesEnum } from "src/app/enums/cities.enum";
+import { Cities } from "src/app/enums/cities.enum";
 import { HourlyWeather } from "src/app/models/hourly-weather.model";
+import { CityWeather } from "src/app/models/city-weather.model";
 
 describe("CityWeatherComponent", () => {
   let component: CityWeatherComponent;
@@ -64,12 +65,12 @@ describe("CityWeatherComponent", () => {
   });
 
   it("should set city icon path based on cityId", () => {
-    component.setCiityIcon(CitiesEnum.MADRID);
+    component.cityWeather = new CityWeather();
+    component.setCiityIcon(Cities.MADRID);
     expect(component.cityWeather.cityIcon).toContain("madrid");
   });
 
   it("should remove all items form hourlyCityWeather list", () => {
-    component.hideHourlyCityWeather();
     component.hourlyCityWeather = [new HourlyWeather()];
     component.hideHourlyCityWeather();
     expect(component.hourlyCityWeather.length).toBe(0);
@@ -84,14 +85,19 @@ describe("CityWeatherComponent", () => {
     expect(component.cityWeather.name).toBe(getCityWeatherResponse.name);
     expect(component.cityWeather.temp).toBe(getCityWeatherResponse.main.temp);
     expect(component.cityWeather.wind).toBe(getCityWeatherResponse.wind.speed);
-    expect(component.cityWeather.lat).toBe(getCityWeatherResponse.coord.lat);
-    expect(component.cityWeather.lon).toBe(getCityWeatherResponse.coord.lon);
+    expect(component.cityWeather.latitude).toBe(
+      getCityWeatherResponse.coord.lat
+    );
+    expect(component.cityWeather.longitude).toBe(
+      getCityWeatherResponse.coord.lon
+    );
   });
 
   it("should call the server to get hourly weather information for city when show more link is clicked", () => {
     spyOn(service, "getHourlyCityWeather").and.callFake(() => {
       return from([getHourlyCityWeatherResponse]);
     });
+    component.cityWeather = new CityWeather();
     component.getHourlyCityWeather();
     expect(component.hourlyCityWeather.length).toBe(2);
   });

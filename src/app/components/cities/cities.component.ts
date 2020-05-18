@@ -1,22 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { CitiesEnum } from "src/app/enums/cities.enum";
+import { Component } from "@angular/core";
+import { Cities } from "src/app/enums/cities.enum";
 
 @Component({
   selector: "app-cities",
   templateUrl: "./cities.component.html",
   styleUrls: ["./cities.component.scss"],
 })
-export class CitiesComponent implements OnInit {
+export class CitiesComponent {
   //Initialisation of citiId list from enums
   citiesId: number[] = [
-    CitiesEnum.BERLIN,
-    CitiesEnum.LONDON,
-    CitiesEnum.MADRID,
-    CitiesEnum.PARIS,
-    CitiesEnum.ROME,
+    Cities.BERLIN,
+    Cities.LONDON,
+    Cities.MADRID,
+    Cities.PARIS,
+    Cities.ROME,
   ];
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

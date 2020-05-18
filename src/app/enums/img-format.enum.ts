@@ -1,3 +1,3 @@
-export enum ImageFormatEnum {
+export enum ImageFormat {
   PNG = ".png",
 }

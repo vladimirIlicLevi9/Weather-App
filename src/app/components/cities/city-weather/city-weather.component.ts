@@ -2,8 +2,12 @@ import { Component, OnInit, Input } from "@angular/core";
 import { CityWeather } from "src/app/models/city-weather.model";
 import { CityWeatherService } from "src/app/services/city-weather.service";
 import { HourlyWeather } from "src/app/models/hourly-weather.model";
-import { CitiesEnum } from "src/app/enums/cities.enum";
+import { Cities } from "src/app/enums/cities.enum";
 import { ToastrService } from "ngx-toastr";
+import { ImageFormat } from "src/app/enums/img-format.enum";
+
+//Path to city images folder
+const imagePath = "../../../../assets/images/cities/";
 
 @Component({
   selector: "app-city-weather",
@@ -14,11 +18,9 @@ export class CityWeatherComponent implements OnInit {
   @Input()
   cityId: number;
 
-  //Path to city images folder
-  imagePath: string = "../../../../assets/images/cities/";
   cityWeather: CityWeather;
   hourlyCityWeather: HourlyWeather[] = [];
-  //Hides component from view if an error accrues while getting weather info
+  //Hides component from view if an error occurs while getting weather info
   showCityWeather: boolean;
 
   constructor(
@@ -54,7 +56,10 @@ export class CityWeatherComponent implements OnInit {
   //Calls cityWeatherService to get hourly weather info and stores it in hourlyCityWeather
   getHourlyCityWeather(): void {
     this.cityWeatherService
-      .getHourlyCityWeather(this.cityWeather.lat, this.cityWeather.lon)
+      .getHourlyCityWeather(
+        this.cityWeather.latitude,
+        this.cityWeather.longitude
+      )
       .subscribe(
         (response) => {
           response.hourly.forEach((element) => {
@@ -75,23 +80,23 @@ export class CityWeatherComponent implements OnInit {
   //Sets city icon path in CityWeather object based on cityId
   setCiityIcon(cityId: number): void {
     switch (cityId) {
-      case CitiesEnum.BERLIN:
-        this.cityWeather.cityIcon = this.imagePath + "berlin.png";
+      case Cities.BERLIN:
+        this.cityWeather.cityIcon = `${imagePath}berlin${ImageFormat.PNG}`;
         break;
-      case CitiesEnum.PARIS:
-        this.cityWeather.cityIcon = this.imagePath + "paris.png";
+      case Cities.PARIS:
+        this.cityWeather.cityIcon = `${imagePath}paris${ImageFormat.PNG}`;
         break;
-      case CitiesEnum.MADRID:
-        this.cityWeather.cityIcon = this.imagePath + "madrid.png";
+      case Cities.MADRID:
+        this.cityWeather.cityIcon = `${imagePath}madrid${ImageFormat.PNG}`;
         break;
-      case CitiesEnum.ROME:
-        this.cityWeather.cityIcon = this.imagePath + "rome.png";
+      case Cities.ROME:
+        this.cityWeather.cityIcon = `${imagePath}rome${ImageFormat.PNG}`;
         break;
-      case CitiesEnum.LONDON:
-        this.cityWeather.cityIcon = this.imagePath + "london.png";
+      case Cities.LONDON:
+        this.cityWeather.cityIcon = `${imagePath}london${ImageFormat.PNG}`;
         break;
       default:
-        this.cityWeather.cityIcon = this.imagePath + "city.png";
+        this.cityWeather.cityIcon = `${imagePath}city${ImageFormat.PNG}`;
         break;
     }
   }
