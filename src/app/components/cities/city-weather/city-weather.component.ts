@@ -14,9 +14,12 @@ export class CityWeatherComponent implements OnInit {
   @Input()
   cityId: number;
 
+  //Path to city images folder
   imagePath: String = "../../../../assets/images/cities/";
-  cityWeather: CityWeather = new CityWeather();
+  cityWeather: CityWeather;
   hourlyCityWeather: HourlyWeather[] = [];
+  //Hides component from view if an error accrues while getting weather info
+  showCityWeather: boolean;
 
   constructor(
     private cityWeatherService: CityWeatherService,
@@ -39,9 +42,11 @@ export class CityWeatherComponent implements OnInit {
       (response) => {
         this.cityWeather = new CityWeather({ ...response });
         this.setCiityIcon(this.cityId);
+        this.showCityWeather = true;
       },
       (error) => {
         this.handleError(error);
+        this.showCityWeather = false;
       }
     );
   }
