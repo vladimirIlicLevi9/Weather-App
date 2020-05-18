@@ -12,13 +12,13 @@ const hourlyWeatherAPI = `${environment.Api}onecall`;
 export class CityWeatherService {
   constructor(private http: HttpClient) {}
 
-  //Service that uses city id to get info about weather form Open Weather API
+  // Service that uses city id to get info about weather form Open Weather API
   getCityWeather(cityId): Observable<any> {
     const params = new HttpParams().set("id", cityId);
     return this.http.get(weatherAPI, { params });
   }
 
-  //Service that uses city latitude and longitude to get info about hourly weather from Open Weather API
+  // Service that uses city latitude and longitude to get info about hourly weather from Open Weather API
   getHourlyCityWeather(latitude, longitude): Observable<any> {
     const params = new HttpParams()
       .set("lat", latitude)

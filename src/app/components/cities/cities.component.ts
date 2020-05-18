@@ -7,7 +7,7 @@ import { Cities } from "src/app/enums/cities.enum";
   styleUrls: ["./cities.component.scss"],
 })
 export class CitiesComponent {
-  //Initialisation of citiId list from enums
+  // Initialisation of citiId list from enums
   citiesId: number[] = [
     Cities.BERLIN,
     Cities.LONDON,

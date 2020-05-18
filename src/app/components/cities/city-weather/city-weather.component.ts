@@ -6,7 +6,7 @@ import { Cities } from "src/app/enums/cities.enum";
 import { ToastrService } from "ngx-toastr";
 import { ImageFormat } from "src/app/enums/img-format.enum";
 
-//Path to city images folder
+// Path to city images folder
 const imagePath = "../../../../assets/images/cities/";
 
 @Component({
@@ -20,7 +20,7 @@ export class CityWeatherComponent implements OnInit {
 
   cityWeather: CityWeather;
   hourlyCityWeather: HourlyWeather[] = [];
-  //Hides component from view if an error occurs while getting weather info
+  // Hides component from view if an error occurs while getting weather info
   showCityWeather: boolean;
 
   constructor(
@@ -32,7 +32,7 @@ export class CityWeatherComponent implements OnInit {
     this.getCityWeather(this.cityId);
   }
 
-  //Calls cityWeatherServices to get current weather information and store it in cityWeather
+  // Calls cityWeatherServices to get current weather information and store it in cityWeather
   getCityWeather(cityId: number): void {
     this.cityWeatherService.getCityWeather(cityId).subscribe(
       (response) => {
@@ -46,7 +46,7 @@ export class CityWeatherComponent implements OnInit {
     );
   }
 
-  //Calls cityWeatherService to get hourly weather info and stores it in hourlyCityWeather
+  // Calls cityWeatherService to get hourly weather info and stores it in hourlyCityWeather
   getHourlyCityWeather(): void {
     this.cityWeatherService
       .getHourlyCityWeather(
@@ -60,12 +60,12 @@ export class CityWeatherComponent implements OnInit {
       });
   }
 
-  //Hides hourly wether component
+  // Hides hourly wether component
   hideHourlyCityWeather(): void {
     this.hourlyCityWeather = [];
   }
 
-  //Sets city icon path in CityWeather object based on cityId
+  // Sets city icon path in CityWeather object based on cityId
   setCiityIcon(cityId: number): void {
     switch (cityId) {
       case Cities.BERLIN:
