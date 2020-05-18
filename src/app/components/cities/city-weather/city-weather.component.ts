@@ -15,7 +15,7 @@ export class CityWeatherComponent implements OnInit {
   cityId: number;
 
   //Path to city images folder
-  imagePath: String = "../../../../assets/images/cities/";
+  imagePath: string = "../../../../assets/images/cities/";
   cityWeather: CityWeather;
   hourlyCityWeather: HourlyWeather[] = [];
   //Hides component from view if an error accrues while getting weather info

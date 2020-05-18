@@ -1,7 +1,7 @@
 <!-- Dummy component that displays hourly city weather  -->
 <div class="hourly-city-weather">
   <span class="time">{{ hourlyWeather.dt | date: "shortTime" }}</span>
-  <img [src]="hourlyWeather.weather.icon" />
+  <img [src]="hourlyWeather.weather.icon" alt="image not found" />
   <span class="temp-small">
     {{ hourlyWeather.temp | number: "1.0-0" }}&deg;C</span
   >

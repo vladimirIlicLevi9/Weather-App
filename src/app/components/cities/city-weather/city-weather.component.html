@@ -1,12 +1,20 @@
 <div *ngIf="showCityWeather" class="card-wrapper city-weather">
   <!-- Header with city name and city icon -->
   <div class="city-header">
-    <img class="city-image" [src]="cityWeather.cityIcon" />
+    <img
+      class="city-image"
+      [src]="cityWeather.cityIcon"
+      alt="image not found"
+    />
     <span>{{ cityWeather.name }}</span>
   </div>
   <!-- Information about current city weather with weather icon, descrition, tem, and wind strenght -->
   <div class="weather-info">
-    <img class="weather-icon" [src]="cityWeather.weather.icon" />
+    <img
+      class="weather-icon"
+      [src]="cityWeather.weather.icon"
+      alt="image not found"
+    />
     <span>{{ cityWeather.weather.description }}</span>
     <span class="weather-tmp"
       >{{ cityWeather.temp | number: "1.0-0" }}&deg;C</span
