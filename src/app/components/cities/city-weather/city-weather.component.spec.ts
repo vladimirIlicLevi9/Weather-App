@@ -79,7 +79,8 @@ describe("CityWeatherComponent", () => {
     spyOn(service, "getCityWeather").and.callFake(() => {
       return from([getCityWeatherResponse]);
     });
-    component.getCityWeather();
+
+    component.getCityWeather(component.cityId);
     expect(component.cityWeather.name).toBe(getCityWeatherResponse.name);
     expect(component.cityWeather.temp).toBe(getCityWeatherResponse.main.temp);
     expect(component.cityWeather.wind).toBe(getCityWeatherResponse.wind.speed);

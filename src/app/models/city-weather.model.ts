@@ -1,5 +1,4 @@
 import { Weather } from "./weather.model";
-
 export class CityWeather {
   name: String;
   weather: Weather;

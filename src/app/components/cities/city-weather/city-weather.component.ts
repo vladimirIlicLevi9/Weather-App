@@ -20,11 +20,12 @@ export class CityWeatherComponent implements OnInit {
   constructor(private cityWeatherService: CityWeatherService) {}
 
   ngOnInit(): void {
-    this.getCityWeather();
+    this.getCityWeather(this.cityId);
   }
 
-  getCityWeather(): void {
-    this.cityWeatherService.getCityWeather(this.cityId).subscribe(
+  //Calls cityWeatherServices to get current weather information and store it in cityWeather
+  getCityWeather(cityId: number): void {
+    this.cityWeatherService.getCityWeather(cityId).subscribe(
       (response) => {
         this.cityWeather = new CityWeather({ ...response });
         this.setCiityIcon(this.cityId);
@@ -35,6 +36,7 @@ export class CityWeatherComponent implements OnInit {
     );
   }
 
+  //Calls cityWeatherService to get hourly weather info and stores it in hourlyCityWeather
   getHourlyCityWeather() {
     this.cityWeatherService
       .getHourlyCityWeather(this.cityWeather.lat, this.cityWeather.lon)
@@ -50,10 +52,12 @@ export class CityWeatherComponent implements OnInit {
       );
   }
 
+  //Hides hourly wether component
   hideHourlyCityWeather() {
     this.hourlyCityWeather = [];
   }
 
+  //Sets city icon path in CityWeather object based on cityId
   setCiityIcon(cityId: number) {
     switch (cityId) {
       case CitiesEnum.BERLIN:
@@ -75,6 +79,5 @@ export class CityWeatherComponent implements OnInit {
         this.cityWeather.cityIcon = this.imagePath + "city.png";
         break;
     }
-    this.cityWeather.cityIcon;
   }
 }

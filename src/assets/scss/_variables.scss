@@ -1,3 +1,4 @@
+//Color variables
 $primary-darkblue: #05668d;
 $primary-blue: #028090;
 $primary-darkgreen: #00a896;
@@ -5,7 +6,13 @@ $primary-green: #02c39a;
 $primary-yellow: #f0f3bd;
 $neutral-color: #fff;
 
+//Font variables
 $main-font: "Jost", sans-serif;
 $font-light: 200;
 $font-normal: 300;
 $font-bold: 500;
+
+//Screen size variables
+$desktop_width: 4096px;
+$tablet_width: 1024px;
+$mobile_width: 750px;

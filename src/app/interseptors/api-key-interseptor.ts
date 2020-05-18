@@ -8,6 +8,7 @@ import {
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 
+//Intersepts every HTTP request and adds apiid and units to query params to access Open Weather API
 @Injectable()
 export class HttpAPIKeyInterceptor implements HttpInterceptor {
   constructor() {}

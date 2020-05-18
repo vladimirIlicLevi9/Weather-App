@@ -1,3 +1,4 @@
+// Global sccs file for styling elements
 .link {
   cursor: pointer;
   margin-top: 10px;
@@ -34,20 +35,19 @@
   border-bottom: 0.7px solid $neutral-color;
 }
 
+//Scrollbar scss
+/* Width */
 ::-webkit-scrollbar {
   width: 3px;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
   background: $primary-yellow;
 }
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: $primary-blue;
 }
-
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: $primary-darkblue;
