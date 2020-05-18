@@ -7,6 +7,8 @@ import { CityWeatherComponent } from "./components/cities/city-weather/city-weat
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { HttpAPIKeyInterceptor } from "./interseptors/api-key-interseptor";
 import { HourlyWetherComponent } from "./components/cities/city-weather/hourly-wether/hourly-wether.component";
+import { ToastrModule } from "ngx-toastr";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -16,7 +18,12 @@ import { HourlyWetherComponent } from "./components/cities/city-weather/hourly-w
     CityWeatherComponent,
     HourlyWetherComponent,
   ],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({ timeOut: 2000 }),
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

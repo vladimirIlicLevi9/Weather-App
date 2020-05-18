@@ -1,4 +1,4 @@
-<div class="card-wrapper city-weather">
+<div *ngIf="cityWeather.name" class="card-wrapper city-weather">
   <!-- Header with city name and city icon -->
   <div class="city-header">
     <img class="city-image" [src]="cityWeather.cityIcon" />

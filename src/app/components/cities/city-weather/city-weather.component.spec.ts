@@ -60,7 +60,7 @@ describe("CityWeatherComponent", () => {
 
   beforeEach(() => {
     service = new CityWeatherService(null);
-    component = new CityWeatherComponent(service);
+    component = new CityWeatherComponent(service, null);
   });
 
   it("should set city icon path based on cityId", () => {

@@ -3,6 +3,7 @@ import { CityWeather } from "src/app/models/city-weather.model";
 import { CityWeatherService } from "src/app/services/city-weather.service";
 import { HourlyWeather } from "src/app/models/hourly-weather.model";
 import { CitiesEnum } from "src/app/enums/cities.enum";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-city-weather",
@@ -17,10 +18,19 @@ export class CityWeatherComponent implements OnInit {
   cityWeather: CityWeather = new CityWeather();
   hourlyCityWeather: HourlyWeather[] = [];
 
-  constructor(private cityWeatherService: CityWeatherService) {}
+  constructor(
+    private cityWeatherService: CityWeatherService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.getCityWeather(this.cityId);
+  }
+
+  //Logs error and displays message to user if something is wrong(Bad request or server is not working...)
+  handleError(error): void {
+    console.error(error);
+    this.toastr.error("Something went wrong");
   }
 
   //Calls cityWeatherServices to get current weather information and store it in cityWeather
@@ -31,13 +41,13 @@ export class CityWeatherComponent implements OnInit {
         this.setCiityIcon(this.cityId);
       },
       (error) => {
-        console.log(error);
+        this.handleError(error);
       }
     );
   }
 
   //Calls cityWeatherService to get hourly weather info and stores it in hourlyCityWeather
-  getHourlyCityWeather() {
+  getHourlyCityWeather(): void {
     this.cityWeatherService
       .getHourlyCityWeather(this.cityWeather.lat, this.cityWeather.lon)
       .subscribe(
@@ -47,18 +57,18 @@ export class CityWeatherComponent implements OnInit {
           });
         },
         (error) => {
-          console.log(error);
+          this.handleError(error);
         }
       );
   }
 
   //Hides hourly wether component
-  hideHourlyCityWeather() {
+  hideHourlyCityWeather(): void {
     this.hourlyCityWeather = [];
   }
 
   //Sets city icon path in CityWeather object based on cityId
-  setCiityIcon(cityId: number) {
+  setCiityIcon(cityId: number): void {
     switch (cityId) {
       case CitiesEnum.BERLIN:
         this.cityWeather.cityIcon = this.imagePath + "berlin.png";
