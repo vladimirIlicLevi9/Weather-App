@@ -7,27 +7,29 @@ import { ImageFormat } from "../enums/img-format.enum";
   providedIn: "root",
 })
 export class ImageService {
-  // Sets city icon path in CityWeather object based on cityId
-  setCiityIcon(cityId: number, cityWeather: CityWeather, imagePath): void {
+  // Sets city icon path in based on cityId
+  setCiityIcon(cityId: number, imagePath): string {
+    let cityIcon;
     switch (cityId) {
       case Cities.BERLIN:
-        cityWeather.cityIcon = `${imagePath}berlin${ImageFormat.PNG}`;
+        cityIcon = `${imagePath}berlin${ImageFormat.PNG}`;
         break;
       case Cities.PARIS:
-        cityWeather.cityIcon = `${imagePath}paris${ImageFormat.PNG}`;
+        cityIcon = `${imagePath}paris${ImageFormat.PNG}`;
         break;
       case Cities.MADRID:
-        cityWeather.cityIcon = `${imagePath}madrid${ImageFormat.PNG}`;
+        cityIcon = `${imagePath}madrid${ImageFormat.PNG}`;
         break;
       case Cities.ROME:
-        cityWeather.cityIcon = `${imagePath}rome${ImageFormat.PNG}`;
+        cityIcon = `${imagePath}rome${ImageFormat.PNG}`;
         break;
       case Cities.LONDON:
-        cityWeather.cityIcon = `${imagePath}london${ImageFormat.PNG}`;
+        cityIcon = `${imagePath}london${ImageFormat.PNG}`;
         break;
       default:
-        cityWeather.cityIcon = `${imagePath}city${ImageFormat.PNG}`;
+        cityIcon = `${imagePath}city${ImageFormat.PNG}`;
         break;
     }
+    return cityIcon;
   }
 }

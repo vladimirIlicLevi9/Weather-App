@@ -13,7 +13,7 @@ In interceptors folder there is api-key.interceptor.ts file that Intercepts ever
 
 In models folder there are city-weatehr.model.ts, hourly-weather.model.ts and weather.model.ts files that describe typeScript classes used in app.
 
-In services folder there is cityWeather service that is used to get information about curent and hourly city weather
+In services folder there is cityWeather service that is used to get information about curent and hourly city weather and imageService that is used to map correct image path.
 
 In assets folder there are images and sccs folders. Images folder contains all images used in app. Scss folder contains all scss files used in app.
 

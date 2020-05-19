@@ -35,9 +35,8 @@ export class CityWeatherComponent implements OnInit {
     this.cityWeatherService.getCityWeather(cityId).subscribe(
       (response) => {
         this.cityWeather = new CityWeather({ ...response });
-        this.imageService.setCiityIcon(
+        this.cityWeather.cityIcon = this.imageService.setCiityIcon(
           this.cityId,
-          this.cityWeather,
           imagePath
         );
         this.showCityWeather = true;

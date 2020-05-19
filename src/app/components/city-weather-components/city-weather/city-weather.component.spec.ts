@@ -3,10 +3,12 @@ import { CityWeatherService } from "src/app/services/city-weather.service";
 import { from } from "rxjs/";
 import { HourlyWeather } from "src/app/models/hourly-weather.model";
 import { CityWeather } from "src/app/models/city-weather.model";
+import { ImageService } from "src/app/services/image.service";
 
 describe("CityWeatherComponent", () => {
   let component: CityWeatherComponent;
-  let service: CityWeatherService;
+  let cityWeatherService: CityWeatherService;
+  let imageService: ImageService;
 
   const getCityWeatherResponse = {
     coord: {
@@ -58,9 +60,13 @@ describe("CityWeatherComponent", () => {
     ],
   };
 
+  beforeAll(() => {
+    cityWeatherService = new CityWeatherService(null);
+    imageService = new ImageService();
+  });
+
   beforeEach(() => {
-    service = new CityWeatherService(null);
-    component = new CityWeatherComponent(service, null);
+    component = new CityWeatherComponent(cityWeatherService, imageService);
   });
 
   it("should remove all items form hourlyCityWeather list", () => {
@@ -70,7 +76,7 @@ describe("CityWeatherComponent", () => {
   });
 
   it("should call the server to get current weather information for city and create new CityWeather object", () => {
-    spyOn(service, "getCityWeather").and.callFake(() => {
+    spyOn(cityWeatherService, "getCityWeather").and.callFake(() => {
       return from([getCityWeatherResponse]);
     });
 
@@ -86,8 +92,8 @@ describe("CityWeatherComponent", () => {
     );
   });
 
-  it("should call the server to get hourly weather information for city when show more link is clicked", () => {
-    spyOn(service, "getHourlyCityWeather").and.callFake(() => {
+  it("should call the server to get hourly weather isnformation for city when show more link is clicked", () => {
+    spyOn(cityWeatherService, "getHourlyCityWeather").and.callFake(() => {
       return from([getHourlyCityWeatherResponse]);
     });
     component.cityWeather = new CityWeather();
