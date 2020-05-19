@@ -10,7 +10,7 @@ describe("CityWeatherComponent", () => {
   let cityWeatherService: CityWeatherService;
   let imageService: ImageService;
 
-  const getCityWeatherResponse = {
+  const getCityWeatherResponse = new CityWeather({
     coord: {
       lon: -3.7,
       lat: 40.42,
@@ -29,44 +29,42 @@ describe("CityWeatherComponent", () => {
       speed: 1,
     },
     name: "Madrid",
-  };
+  });
 
-  const getHourlyCityWeatherResponse = {
-    hourly: [
-      {
-        dt: 1589799600,
-        temp: 18.77,
-        weather: [
-          {
-            id: 801,
-            main: "Clouds",
-            description: "few clouds",
-            icon: "02d",
-          },
-        ],
-      },
-      {
-        dt: 1589803200,
-        temp: 18.39,
-        weather: [
-          {
-            id: 803,
-            main: "Clouds",
-            description: "broken clouds",
-            icon: "04d",
-          },
-        ],
-      },
-    ],
-  };
+  const getHourlyCityWeatherResponse = [
+    new HourlyWeather({
+      dt: 1589799600,
+      temp: 18.77,
+      weather: [
+        {
+          id: 801,
+          main: "Clouds",
+          description: "few clouds",
+          icon: "02d",
+        },
+      ],
+    }),
+    new HourlyWeather({
+      dt: 1589803200,
+      temp: 18.39,
+      weather: [
+        {
+          id: 803,
+          main: "Clouds",
+          description: "broken clouds",
+          icon: "04d",
+        },
+      ],
+    }),
+  ];
 
   beforeAll(() => {
-    cityWeatherService = new CityWeatherService(null);
     imageService = new ImageService();
+    cityWeatherService = new CityWeatherService(null, imageService);
   });
 
   beforeEach(() => {
-    component = new CityWeatherComponent(cityWeatherService, imageService);
+    component = new CityWeatherComponent(cityWeatherService);
   });
 
   it("should remove all items form hourlyCityWeather list", () => {
@@ -82,13 +80,13 @@ describe("CityWeatherComponent", () => {
 
     component.getCityWeather(component.cityId);
     expect(component.cityWeather.name).toBe(getCityWeatherResponse.name);
-    expect(component.cityWeather.temp).toBe(getCityWeatherResponse.main.temp);
-    expect(component.cityWeather.wind).toBe(getCityWeatherResponse.wind.speed);
+    expect(component.cityWeather.temp).toBe(getCityWeatherResponse.temp);
+    expect(component.cityWeather.wind).toBe(getCityWeatherResponse.wind);
     expect(component.cityWeather.latitude).toBe(
-      getCityWeatherResponse.coord.lat
+      getCityWeatherResponse.latitude
     );
     expect(component.cityWeather.longitude).toBe(
-      getCityWeatherResponse.coord.lon
+      getCityWeatherResponse.longitude
     );
   });
 

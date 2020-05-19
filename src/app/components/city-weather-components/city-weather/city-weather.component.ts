@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from "@angular/core";
 import { CityWeather } from "src/app/models/city-weather.model";
 import { CityWeatherService } from "src/app/services/city-weather.service";
 import { HourlyWeather } from "src/app/models/hourly-weather.model";
-import { ImageService } from "src/app/services/image.service";
 
 // Path to city images folder
 const imagePath = "../../../../assets/images/cities/";
@@ -21,10 +20,7 @@ export class CityWeatherComponent implements OnInit {
   // Hides component from view if an error occurs while getting weather info
   showCityWeather: boolean;
 
-  constructor(
-    private cityWeatherService: CityWeatherService,
-    private imageService: ImageService
-  ) {}
+  constructor(private cityWeatherService: CityWeatherService) {}
 
   ngOnInit(): void {
     this.getCityWeather(this.cityId);
@@ -32,13 +28,9 @@ export class CityWeatherComponent implements OnInit {
 
   // Calls cityWeatherServices to get current weather information and store it in cityWeather
   getCityWeather(cityId: number): void {
-    this.cityWeatherService.getCityWeather(cityId).subscribe(
+    this.cityWeatherService.getCityWeather(cityId, imagePath).subscribe(
       (response) => {
-        this.cityWeather = new CityWeather({ ...response });
-        this.cityWeather.cityIcon = this.imageService.setCiityIcon(
-          this.cityId,
-          imagePath
-        );
+        this.cityWeather = response;
         this.showCityWeather = true;
       },
       () => {
@@ -54,11 +46,7 @@ export class CityWeatherComponent implements OnInit {
         this.cityWeather.latitude,
         this.cityWeather.longitude
       )
-      .subscribe((response) => {
-        response.hourly.forEach((element) => {
-          this.hourlyCityWeather.push(new HourlyWeather(element));
-        });
-      });
+      .subscribe((response) => (this.hourlyCityWeather = response));
   }
 
   // Hides hourly wether component

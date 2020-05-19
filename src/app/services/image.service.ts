@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { CityWeather } from "../models/city-weather.model";
 import { Cities } from "../enums/cities.enum";
 import { ImageFormat } from "../enums/img-format.enum";
 
