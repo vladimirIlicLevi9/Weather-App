@@ -3,6 +3,8 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 Toastr package(https://www.npmjs.com/package/ngx-toastr)is used to display messages to user.
 
+# Project description
+
 app folder contains components, enums, interceptors,models, services folders.
 
 In city-weatehr folder there is city-weather.component.spec.ts file with unit test for this component.
@@ -21,6 +23,7 @@ In enviroment variable information about API link, path to api Icons, appId(to a
 
 ## Development server
 
+Run npm install to download latest dependencies
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
