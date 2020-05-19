@@ -1,7 +1,6 @@
 import { CityWeatherComponent } from "./city-weather.component";
 import { CityWeatherService } from "src/app/services/city-weather.service";
 import { from } from "rxjs/";
-import { Cities } from "src/app/enums/cities.enum";
 import { HourlyWeather } from "src/app/models/hourly-weather.model";
 import { CityWeather } from "src/app/models/city-weather.model";
 
@@ -61,19 +60,7 @@ describe("CityWeatherComponent", () => {
 
   beforeEach(() => {
     service = new CityWeatherService(null);
-    component = new CityWeatherComponent(service);
-  });
-
-  it("should set city icon path based on cityId", () => {
-    component.cityWeather = new CityWeather();
-    component.setCiityIcon(Cities.MADRID);
-    expect(component.cityWeather.cityIcon).toContain("madrid");
-  });
-
-  it("should set city default icon path if cityId is not found", () => {
-    component.cityWeather = new CityWeather();
-    component.setCiityIcon(1111);
-    expect(component.cityWeather.cityIcon).toContain("city");
+    component = new CityWeatherComponent(service, null);
   });
 
   it("should remove all items form hourlyCityWeather list", () => {

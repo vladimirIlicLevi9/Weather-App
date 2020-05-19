@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, OnDestroy } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { CityWeather } from "src/app/models/city-weather.model";
 import { CityWeatherService } from "src/app/services/city-weather.service";
 import { HourlyWeather } from "src/app/models/hourly-weather.model";
-import { Cities } from "src/app/enums/cities.enum";
-import { ImageFormat } from "src/app/enums/img-format.enum";
+import { ImageService } from "src/app/services/image.service";
 
 // Path to city images folder
 const imagePath = "../../../../assets/images/cities/";
@@ -22,7 +21,10 @@ export class CityWeatherComponent implements OnInit {
   // Hides component from view if an error occurs while getting weather info
   showCityWeather: boolean;
 
-  constructor(private cityWeatherService: CityWeatherService) {}
+  constructor(
+    private cityWeatherService: CityWeatherService,
+    private imageService: ImageService
+  ) {}
 
   ngOnInit(): void {
     this.getCityWeather(this.cityId);
@@ -33,10 +35,14 @@ export class CityWeatherComponent implements OnInit {
     this.cityWeatherService.getCityWeather(cityId).subscribe(
       (response) => {
         this.cityWeather = new CityWeather({ ...response });
-        this.setCiityIcon(this.cityId);
+        this.imageService.setCiityIcon(
+          this.cityId,
+          this.cityWeather,
+          imagePath
+        );
         this.showCityWeather = true;
       },
-      (error) => {
+      () => {
         this.showCityWeather = false;
       }
     );
@@ -59,29 +65,5 @@ export class CityWeatherComponent implements OnInit {
   // Hides hourly wether component
   hideHourlyCityWeather(): void {
     this.hourlyCityWeather = [];
-  }
-
-  // Sets city icon path in CityWeather object based on cityId
-  setCiityIcon(cityId: number): void {
-    switch (cityId) {
-      case Cities.BERLIN:
-        this.cityWeather.cityIcon = `${imagePath}berlin${ImageFormat.PNG}`;
-        break;
-      case Cities.PARIS:
-        this.cityWeather.cityIcon = `${imagePath}paris${ImageFormat.PNG}`;
-        break;
-      case Cities.MADRID:
-        this.cityWeather.cityIcon = `${imagePath}madrid${ImageFormat.PNG}`;
-        break;
-      case Cities.ROME:
-        this.cityWeather.cityIcon = `${imagePath}rome${ImageFormat.PNG}`;
-        break;
-      case Cities.LONDON:
-        this.cityWeather.cityIcon = `${imagePath}london${ImageFormat.PNG}`;
-        break;
-      default:
-        this.cityWeather.cityIcon = `${imagePath}city${ImageFormat.PNG}`;
-        break;
-    }
   }
 }
