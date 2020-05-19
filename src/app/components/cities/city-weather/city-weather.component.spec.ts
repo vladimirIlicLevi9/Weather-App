@@ -61,13 +61,19 @@ describe("CityWeatherComponent", () => {
 
   beforeEach(() => {
     service = new CityWeatherService(null);
-    component = new CityWeatherComponent(service, null);
+    component = new CityWeatherComponent(service);
   });
 
   it("should set city icon path based on cityId", () => {
     component.cityWeather = new CityWeather();
     component.setCiityIcon(Cities.MADRID);
     expect(component.cityWeather.cityIcon).toContain("madrid");
+  });
+
+  it("should set city default icon path if cityId is not found", () => {
+    component.cityWeather = new CityWeather();
+    component.setCiityIcon(1111);
+    expect(component.cityWeather.cityIcon).toContain("city");
   });
 
   it("should remove all items form hourlyCityWeather list", () => {
